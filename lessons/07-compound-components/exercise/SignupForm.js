@@ -22,6 +22,8 @@ export default function SignupForm() {
   const [loading, setLoading] = useState(false)
   const [startDate, setStartDate] = useState(new Date("March 1, 2019"))
 
+  console.log(startDate)
+
   const handleSignup = async event => {
     event.preventDefault()
     setLoading(true)
@@ -63,7 +65,11 @@ export default function SignupForm() {
             onChange={setStartDate}
             start={2018}
             end={2019}
-          />
+          >
+            <DayField /> /
+            <MonthField /> /
+            <YearField start={2018} end={2019} />
+          </DateFields>
         </p>
         <TabsButton>
           <FaDumbbell />
