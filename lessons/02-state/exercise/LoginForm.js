@@ -8,6 +8,9 @@ import { login } from "app/utils"
 // export default LoginFormFinal
 
 export default function LoginForm() {
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+  const [showPassword, setShowPassword] = useState(false)
   return (
     <form>
       <VisuallyHidden>
@@ -18,6 +21,8 @@ export default function LoginForm() {
         id="login:email"
         className="inputField"
         placeholder="you@example.com"
+        value={email}
+        onChange={e => setEmail(e.target.value)}
       />
 
       <VisuallyHidden>
@@ -25,8 +30,10 @@ export default function LoginForm() {
       </VisuallyHidden>
       <input
         id="login:password"
-        type="password"
+        type={showPassword ? "text" : "password"}
         className="inputField"
+        value={password}
+        onChange={e => setPassword(e.target.value)}
         placeholder="Password"
       />
 
@@ -35,7 +42,10 @@ export default function LoginForm() {
           <input
             className="passwordCheckbox"
             type="checkbox"
-            defaultChecked={false}
+            defaultChecked={showPassword}
+            onClick={() => {
+              setShowPassword(!showPassword)
+            }}
           />{" "}
           show password
         </label>
